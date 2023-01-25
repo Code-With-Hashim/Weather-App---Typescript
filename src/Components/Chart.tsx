@@ -12,7 +12,6 @@ import {
     PointElement,
     LineElement
 } from 'chart.js';
-import { AnyIfEmpty } from "react-redux";
 
 ChartJS.register(
     CategoryScale,
