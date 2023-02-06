@@ -36,20 +36,22 @@ export const SearchComponents = () => {
     const [locationDetail, setLocationDetail] = useState<string>("")
     const [weatherDetail, setWeatherDetail] = useState<Array<void>>([])
     const [dayWeatherDetail, setDayWeatherDetail] = useState<Array<void>>([])
-    const value = localStorage.getItem('location') || {}
-    let location: location;
+    const value = localStorage.getItem('location') || JSON.stringify({lat : 38.685516, long : -101.073324})
+    let location : location;
     if (typeof value === 'string') {
         location = JSON.parse(value)
+       
     }
 
     useEffect(() => {
-
         axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${location.lat}&lon=${location.long}&days=7&key=82ad3aac8c2f434f8acbb9208e364187`)
             .then((res) => setWeatherDetail(res.data))
         axios.get(`https://api.weatherbit.io/v2.0/forecast/hourly?lat=${location.lat}&lon=${location.long}&key=82ad3aac8c2f434f8acbb9208e364187`)
             .then((res) => setDayWeatherDetail(res.data))
 
     }, [])
+
+    
 
 
     const getWeatherDetail = async () => {
